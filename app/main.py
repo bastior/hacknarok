@@ -11,6 +11,6 @@ app.register_blueprint(user_blueprint)
 
 @app.route("/")
 def hello():
-    return 'db'
+    return str(db.metadata.sorted_tables)
 
 
