@@ -2,6 +2,7 @@ from flask import Blueprint
 from flask import redirect
 from flask import render_template
 from flask import request
+from flask import url_for
 from flask.views import View, MethodView
 
 from db import db
@@ -39,18 +40,13 @@ class AddUser(MethodView):
     def get_template_name(self):
         return 'add.html'
 
-    def get_objects(self):
-        return User.query.all()
-
-    def render_template(self, context):
-        return render_template(self.get_template_name(), **context)
-
     def get(self):
-        context = {'objects': self.get_objects()}
-        return self.render_template(context)
+        return render_template(self.get_template_name())
 
     def post(self):
-        user = User(request.form['email'])
+        user = User(request.form['email'], request.form['password'])
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('user.show_users'))
 
-add_user_view = AddUser.as_view('add_user')
-user_blueprint.add_url_rule('/users/add', view_func=add_user_view, methods=['GET', 'POST'])
+user_blueprint.add_url_rule('/users/add', view_func=AddUser.as_view('add_user'))

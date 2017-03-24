@@ -11,7 +11,7 @@ class User(db.Model):
         self.password = password
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<User %s>' % self.email
 
 
 class Offer(db.Model):
