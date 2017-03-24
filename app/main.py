@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import render_template
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -8,8 +9,7 @@ db = SQLAlchemy(app)
 
 @app.route("/")
 def hello():
-    return "Hello World from Flask in a uWSGI Nginx Docker container with \
-     Python 3.5 (default)"
+    return render_template('index.html')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True, port=80)
