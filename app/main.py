@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import render_template
 
 from db import db
 from views import user_blueprint
@@ -11,6 +12,6 @@ app.register_blueprint(user_blueprint)
 
 @app.route("/")
 def hello():
-    return 'db'
+    return render_template('index.html')
 
 

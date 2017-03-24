@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="col-md-12">
+        <form>
+            <div class="form-group">
+                <label for="email_id" class="control-label">Email</label>
+                <input type="email" class="form-control" id="email_id" name="email_name" placeholder="name@domain.com">
+            </div>
+            <div class="form-group">
+                <label for="password_id" class="control-label">Password</label>
+                <input type="password" class="form-control" id="password_id" name="password_name" placeholder="password">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Do you...</label>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="role" value="recruiter">
+                    want to recruit?
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio"  name="role" value="recruit">
+                    want to be recruited?
+                  </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+
+    </div>
+{% endblock %}
