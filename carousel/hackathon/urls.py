@@ -14,4 +14,5 @@ urlpatterns = patterns('',
     url(r'^linkedin_login/$', views.linkedin_login, name='linkedin_login'),
     url(r'^facebook_login/$', views.facebook_login, name='facebook_login'),
     url(r'^facebook/$', views.facebook, name='facebook'),
+    url(r'^offers/$', views.OfferView.as_view(), name='offers'),
 )

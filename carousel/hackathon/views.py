@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 
 # Django REST Framework
+from django.views.generic import ListView
 from rest_framework import viewsets, mixins
 
 # Scripts
@@ -31,6 +32,11 @@ from hackathon.forms import UserForm
 profile_track = None
 getLinkedIn = LinkedinOauthClient(settings.LINKEDIN_CLIENT_ID, settings.LINKEDIN_CLIENT_SECRET)
 getFacebook = FacebookOauthClient(settings.FACEBOOK_APP_ID, settings.FACEBOOK_APP_SECRET)
+
+
+class OfferView(ListView):
+    model = User
+    template_name = 'hackathon/offer.html'
 
 
 def index(request):
