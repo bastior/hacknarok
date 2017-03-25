@@ -65,6 +65,13 @@ class RejectOfferView(View):
         return HttpResponse('ok')
 
 
+class RecruitView(ListView):
+    model = Recruit
+    template_name = 'hackathon/recruit.html'
+
+
+
+
 def index(request):
     print "index: " + str(request.user)
 
@@ -209,7 +216,7 @@ def user_login(request):
                 login(request, user)
                 if hasattr(user.userprofile, 'recruiter'):
                     # TODO: To redirect to recruiter page.
-                    return HttpResponseRedirect('/hackathon/api/')
+                    return HttpResponseRedirect('/hackathon/recruits/')
                 else:
                     return HttpResponseRedirect('/hackathon/offers/')
             else:
