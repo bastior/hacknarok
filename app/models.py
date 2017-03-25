@@ -28,14 +28,16 @@ class User(db.Model):
     def get_id(self):
         return str(self.id)
 
-    def is_recruiter(self):
-        return True
 
-    def is_recruit(self):
-        return False
+# idk if it works
+tags = db.Table('tags',
+    db.Column('offer_id', db.Integer, db.ForeignKey('offer.id')),
+    db.Column('technology_id', db.Integer, db.ForeignKey('technology.id'))
+)
 
 class Technology(db.Model):
-    __tablename__ = 'Technology'
+    __tablename__ = 'technology'
+    __table_args__ = {'mysql_engine': 'InnoDB'}
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
 
@@ -46,9 +48,8 @@ class Offer(db.Model):
     lower_bound_cash = db.Column(db.Integer)
     higher_bound_cash = db.Column(db.Integer)
     recruiter_id = db.Column(db.Integer, db.ForeignKey('recruiter.id'))
-    # idk if it works
-    # tags = db.relationship('Technology', secondary=tags,
-    #    backref=db.backref('Offer', lazy='dynamic'))
+    tags = db.relationship('technology', secondary=tags,
+        backref=db.backref('offer', lazy='dynamic'))
 
 
 class Recruiter(db.Model):
@@ -61,9 +62,7 @@ class Recruiter(db.Model):
 
 class Recruit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    pass
 
 
 class Education(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    pass

@@ -22,6 +22,13 @@ with app.app_context():
 
 @app.route("/")
 def hello():
-    return str(db.metadata.sorted_tables[1].columns)
+    return str(db.metadata.sorted_tables[0].columns)
 
-
+def create_technology_table():
+    db.engine.execute("INSERT INTO technology (name) VALUES ('C++')")
+    db.engine.execute("INSERT INTO technology (name) VALUES ('Java')")
+    db.engine.execute("INSERT INTO technology (name) VALUES ('C#')")
+    db.engine.execute("INSERT INTO technology (name) VALUES ('Python')")
+    db.engine.execute("INSERT INTO technology (name) VALUES ('Javascript')")
+    db.engine.execute("INSERT INTO technology (name) VALUES ('MongoDB')")
+    db.engine.execute("INSERT INTO technology (name) VALUES ('CSS')")
