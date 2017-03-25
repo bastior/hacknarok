@@ -38,6 +38,12 @@ class OfferView(ListView):
     model = Offer
     template_name = 'hackathon/offer.html'
 
+    def get_queryset(self):
+        qs = super(OfferView, self).get_queryset()
+        qs = qs.filter(technologies=self.request.user.userprofile.recruit.technologies.all)
+        return qs
+
+
 
 def index(request):
     print "index: " + str(request.user)
