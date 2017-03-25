@@ -34,29 +34,29 @@ class User(db.Model):
     def is_recruit(self):
         return False
 
+class Technology(db.Model):
+    __tablename__ = 'Technology'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
 
 class Offer(db.Model):
+    __table_args__ = {'mysql_engine': 'InnoDB'}
     id = db.Column(db.Integer, primary_key=True)
     offer_title = db.Column(db.String(250))
     lower_bound_cash = db.Column(db.Integer)
     higher_bound_cash = db.Column(db.Integer)
-
-
-class Company(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
+    recruiter_id = db.Column(db.Integer, db.ForeignKey('recruiter.id'))
+    # idk if it works
+    # tags = db.relationship('Technology', secondary=tags,
+    #    backref=db.backref('Offer', lazy='dynamic'))
 
 
 class Recruiter(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     surname = db.Column(db.String(100))
-    pass
-
-
-class Technology(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    pass
+    offers = db.relationship('Offer', backref='recruiter',
+                                lazy='dynamic')
 
 
 class Recruit(db.Model):
