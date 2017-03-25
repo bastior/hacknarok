@@ -69,3 +69,6 @@ class Offer(models.Model):
     employment_type = models.CharField(max_length=100, default='')
     remote_work = models.CharField(max_length=100, default='')
     technologies = models.ManyToManyField(Technology)
+    sports_card = models.BooleanField(default=False)
+    private_medical_care = models.BooleanField(default=False)
+    project_description = models.CharField(max_length=3000, default='')
