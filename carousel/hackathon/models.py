@@ -44,17 +44,10 @@ class Recruiter(models.Model):
     company_name = models.CharField(max_length=100, default='')
 
 
-class Offer(models.Model):
-    lower_cash = models.IntegerField()
-    higher_cash = models.IntegerField()
-    location = models.CharField(max_length=100, default='')
-    recruiter = models.ForeignKey(Recruiter, default=0)
-    employment_type = models.CharField(max_length=100, default='')
-    remote_work = models.CharField(max_length=100, default='')
-
 class Technology(models.Model):
     expertise = models.IntegerField()
     name = models.CharField(max_length=100, default='PHP')
+
 
 class Recruit(models.Model):
     name = models.CharField(max_length=100, default='')
@@ -63,4 +56,14 @@ class Recruit(models.Model):
     expected_higher_cash = models.CharField(max_length=100, default='')
     expected_location = models.CharField(max_length=100, default='')
     expected_secondary_location = models.CharField(max_length=100, default='')
+    technologies = models.ManyToManyField(Technology)
+
+
+class Offer(models.Model):
+    lower_cash = models.IntegerField()
+    higher_cash = models.IntegerField()
+    location = models.CharField(max_length=100, default='')
+    recruiter = models.ForeignKey(Recruiter, default=0)
+    employment_type = models.CharField(max_length=100, default='')
+    remote_work = models.CharField(max_length=100, default='')
     technologies = models.ManyToManyField(Technology)
