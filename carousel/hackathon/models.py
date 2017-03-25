@@ -36,3 +36,8 @@ class FacebookProfile(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
     profile_url = models.CharField(max_length=50)
     access_token = models.CharField(max_length=100)
+
+class Offer(models.Model):
+    lower_cash = models.IntegerField()
+    higher_cash = models.IntegerField()
+    location = models.CharField(max_length=100, default='')
