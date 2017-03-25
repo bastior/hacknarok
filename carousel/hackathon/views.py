@@ -13,6 +13,7 @@ from django.http import JsonResponse
 
 # Django REST Framework
 from django.views.generic import ListView
+from django.views.generic import View
 from rest_framework import viewsets, mixins
 
 # Scripts
@@ -41,8 +42,27 @@ class OfferView(ListView):
     def get_queryset(self):
         qs = super(OfferView, self).get_queryset()
         qs = qs.filter(technologies=self.request.user.userprofile.recruit.technologies.all)
+        qs = qs.exclude(pk__in=self.request.user.userprofile.recruit.accepted_offers.all)
+        qs = qs.exclude(pk__in=self.request.user.userprofile.recruit.declined_offers.all)
         return qs
 
+
+class AcceptOfferView(View):
+    def get(self, request, *args, **kwargs):
+        offer_id = int(request.GET['id'])
+        recruit = request.user.userprofile.recruit
+        recruit.accepted_offers.add(Offer.objects.get(pk=offer_id))
+        recruit.save()
+        return HttpResponse('ok')
+
+
+class RejectOfferView(View):
+    def get(self, request, *args, **kwargs):
+        offer_id = int(request.GET['id'])
+        recruit = request.user.userprofile.recruit
+        recruit.declined_offers.add(Offer.objects.get(pk=offer_id))
+        recruit.save()
+        return HttpResponse('ok')
 
 
 def index(request):

@@ -4,16 +4,10 @@
 		{% include 'hackathon/base.html' %}
         <div class="container">
             <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false" data-wrap="false">
-              <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
-              </ol>
 
               <div class="carousel-inner" role="listbox">
                   {% for offer in object_list %}
-                      <div class="item {% if forloop.first %}active{% endif %}">
+                      <div class="item {% if forloop.first %}active{% endif %} offer-item" data-id="{{ offer.id }}">
                           <div class="col-md-12">
                             <div class="row">
                                 <h1>{{ offer.company_name }}</h1>
@@ -100,17 +94,22 @@
 
                         </div>
                       </div>
+
+                      {% empty %}
+                      <h2>No new offers! Come back later.</h2>
                   {% endfor %}
               </div>
               </div>
-            <div class="row" style="padding-top: 20px; position:fixed; width: 100%; bottom: 0;">
-                <div class="col-md-4">
-                  <a type="button" class="btn btn-block btn-danger btn-lg" role="button" href="#myCarousel" data-slide="prev">Reject</a>
+            {% if object_list %}
+                <div class="row" style="padding-top: 20px; position:fixed; width: 100%; bottom: 0;">
+                    <div class="col-md-4">
+                      <a type="button" class="btn btn-block btn-danger btn-lg" role="button" href="#myCarousel" data-slide="next" id="reject-btn">Reject</a>
+                    </div>
+                    <div class="col-md-4">
+                      <a type="button" class="btn btn-block btn-success btn-lg" role="button" href="#myCarousel" data-slide="next" id="accept-btn">Accept</a>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                  <a type="button" class="btn btn-block btn-success btn-lg" role="button" href="#myCarousel" data-slide="next">Accept</a>
-                </div>
-            </div>
+            {% endif %}
 
         </div>
     </body>
