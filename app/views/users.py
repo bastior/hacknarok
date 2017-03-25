@@ -13,7 +13,7 @@ user_blueprint = Blueprint('user', __name__, template_folder='../templates/users
 
 class ShowUsers(View):
     def get_template_name(self):
-        return 'show.html'
+        return 'show_users.html'
 
     def get_objects(self):
         return User.query.all()
