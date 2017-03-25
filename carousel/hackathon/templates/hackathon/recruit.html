@@ -57,7 +57,20 @@
 
                             <div class="row">
                                 <h3>Experience</h3>
-                                <div class="col-md-10">
+                                {% for job_experience in recruit.jobexperience_set.all %}
+                                    <div class="col-md-10">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-xs-4"><label>{{ job_experience.company_name }}</label></div>
+                                            <div class="col-lg-3 col-xs-4"><label>{{ job_experience.years }}</label></div>
+<!--                                             <div class="col-lg-6 col-xs-8">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{ technology.expertise }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ technology.expertise }}%"></div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                {% endfor %}
+<!--                                 <div class="col-md-10">
                                     <div class="row">
                                         <div class="col-lg-9 col-xs-12">
                                             <p>
@@ -65,7 +78,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
                             <!--<div class="row">-->
