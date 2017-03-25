@@ -66,6 +66,7 @@ class Offer(models.Model):
 class Recruit(models.Model):
     name = models.CharField(max_length=100, default='')
     surname = models.CharField(max_length=100, default='')
+    experience = models.CharField(max_length=1400, default='')
     expected_lower_cash = models.CharField(max_length=100, default='')
     expected_higher_cash = models.CharField(max_length=100, default='')
     expected_location = models.CharField(max_length=100, default='')

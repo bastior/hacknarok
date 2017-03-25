@@ -70,8 +70,6 @@ class RecruitView(ListView):
     template_name = 'hackathon/recruit.html'
 
 
-
-
 def index(request):
     print "index: " + str(request.user)
 
