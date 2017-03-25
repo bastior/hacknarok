@@ -25,3 +25,20 @@ def hello():
     return str(db.metadata.sorted_tables[1].columns)
 
 
+def create_technology_table():
+    db.engine.execute("INSERT INTO technology (name) VALUES ('C++')")
+    db.engine.execute("INSERT INTO technology (name) VALUES ('Java')")
+    db.engine.execute("INSERT INTO technology (name) VALUES ('C#')")
+    db.engine.execute("INSERT INTO technology (name) VALUES ('Python')")
+    db.engine.execute("INSERT INTO technology (name) VALUES ('Javascript')")
+    db.engine.execute("INSERT INTO technology (name) VALUES ('MongoDB')")
+    db.engine.execute("INSERT INTO technology (name) VALUES ('CSS')")
+
+
+def create_education_table():
+    db.engine.execute("INSERT INTO technology (name) VALUES ('Primary Education')")
+    db.engine.execute("INSERT INTO technology (name) VALUES ('Secondary Education')")
+    db.engine.execute("INSERT INTO technology (name) VALUES ('BcS')")
+    db.engine.execute("INSERT INTO technology (name) VALUES ('McS')")
+    db.engine.execute("INSERT INTO technology (name) VALUES ('PhD')")
+
