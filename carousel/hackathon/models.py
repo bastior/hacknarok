@@ -36,3 +36,31 @@ class FacebookProfile(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
     profile_url = models.CharField(max_length=50)
     access_token = models.CharField(max_length=100)
+
+
+class Recruiter(models.Model):
+    name = models.CharField(max_length=100, default='')
+    surname = models.CharField(max_length=100, default='')
+    company_name = models.CharField(max_length=100, default='')
+
+
+class Offer(models.Model):
+    lower_cash = models.IntegerField()
+    higher_cash = models.IntegerField()
+    location = models.CharField(max_length=100, default='')
+    recruiter = models.ForeignKey(Recruiter, default=0)
+    employment_type = models.CharField(max_length=100, default='')
+    remote_work = models.CharField(max_length=100, default='')
+
+class Technology(models.Model):
+    expertise = models.IntegerField()
+    name = models.CharField(max_length=100, default='PHP')
+
+class Recruit(models.Model):
+    name = models.CharField(max_length=100, default='')
+    surname = models.CharField(max_length=100, default='')
+    expected_lower_cash = models.CharField(max_length=100, default='')
+    expected_higher_cash = models.CharField(max_length=100, default='')
+    expected_location = models.CharField(max_length=100, default='')
+    expected_secondary_location = models.CharField(max_length=100, default='')
+    technologies = models.ManyToManyField(Technology)
