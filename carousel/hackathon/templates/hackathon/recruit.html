@@ -10,7 +10,7 @@
                       <div class="item recruit-item {% if forloop.first %}active{% endif %}" data-id="{{ recruit.id }}">
                           <div class="col-md-12">
                             <div class="row"><div class="col-md-8">
-                                <h1>{{ recruit.name }}&nbsp;{{ recruit.surname }}</h1></div>
+                                <h1 id="recruit-name">{{ recruit.name }}&nbsp;{{ recruit.surname }}</h1></div>
                                 <div class="col-md-4">
                                         <img src="/static/imgrec/a.jpg" class="img-responsive" style="height: 120px"/>
                                 </div>
@@ -83,11 +83,17 @@
                     <h2 class="modal-title" id="myModalLabel"></h2>
                   </div>
                   <div class="modal-body">
-                    ...
+                    <div class="row">
+                        <div class="col-xs-4"><label for="Email">Email</label></div>
+                        <div class="col-xs-8"><span id="Email">name.surname@gmail.com</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4"><label for="Phone">Phone</label></div>
+                        <div class="col-xs-8"><span id="Phone">+48 788 444 111</span></div>
+                    </div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                   </div>
                 </div>
               </div>
