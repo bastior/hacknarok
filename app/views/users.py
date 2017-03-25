@@ -8,8 +8,7 @@ from flask.views import View, MethodView
 from db import db
 from models import User
 
-user_blueprint = Blueprint('user', __name__, template_folder='templates/users')
-offer_blueprint = Blueprint('offer', __name__, template_folder='templates/offers')
+user_blueprint = Blueprint('user', __name__, template_folder='../templates/users')
 
 
 class ShowUsers(View):
@@ -31,7 +30,7 @@ user_blueprint.add_url_rule('/users/show', view_func=ShowUsers.as_view('show_use
 
 class AddUser(MethodView):
     def get_template_name(self):
-        return 'add.html'
+        return 'add_user.html'
 
     def get(self):
         return render_template(self.get_template_name())
@@ -44,19 +43,3 @@ class AddUser(MethodView):
 
 user_blueprint.add_url_rule('/users/add', view_func=AddUser.as_view('add_user'))
 
-
-class AddOffer(MethodView):
-    def get_template_name(self):
-        return 'add.html'
-
-    def get(self):
-        return render_template(self.get_template_name())
-
-    def post(self):
-        user = User(request.form['email'], request.form['password'])
-        db.session.add(user)
-        db.session.commit()
-        return redirect(url_for('user.show_users'))
-
-
-user_blueprint.add_url_rule('/offers/add', view_func=AddOffer.as_view('add_offer'))
