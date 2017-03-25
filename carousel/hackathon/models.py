@@ -42,6 +42,7 @@ class Recruiter(models.Model):
     name = models.CharField(max_length=100, default='')
     surname = models.CharField(max_length=100, default='')
     company_name = models.CharField(max_length=100, default='')
+    user_profile = models.OneToOneField(UserProfile)
 
 
 class Technology(models.Model):
@@ -57,6 +58,7 @@ class Recruit(models.Model):
     expected_location = models.CharField(max_length=100, default='')
     expected_secondary_location = models.CharField(max_length=100, default='')
     technologies = models.ManyToManyField(Technology)
+    user_profile = models.OneToOneField(UserProfile)
 
 
 class Offer(models.Model):
