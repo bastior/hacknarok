@@ -76,8 +76,3 @@ class Recruit(models.Model):
     accepted_offers = models.ManyToManyField(Offer, related_name='accepted_offers')
     declined_offers = models.ManyToManyField(Offer, related_name='declined_offers')
 
-
-class JobExperience(models.Model):
-    company_name = models.CharField(max_length=100, default='')
-    years = models.IntegerField()
-    recruiter = models.ForeignKey(Recruit, on_delete=models.CASCADE)
