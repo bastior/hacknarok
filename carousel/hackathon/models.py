@@ -41,7 +41,6 @@ class FacebookProfile(models.Model):
 class Recruiter(models.Model):
     name = models.CharField(max_length=100, default='')
     surname = models.CharField(max_length=100, default='')
-    company_name = models.CharField(max_length=100, default='')
     user_profile = models.OneToOneField(UserProfile)
 
 
@@ -61,6 +60,7 @@ class Offer(models.Model):
     sports_card = models.BooleanField(default=False)
     private_medical_care = models.BooleanField(default=False)
     project_description = models.CharField(max_length=3000, default='')
+    company_name = models.CharField(max_length=100, default='ACME Inc')
 
 
 class Recruit(models.Model):
@@ -74,5 +74,3 @@ class Recruit(models.Model):
     user_profile = models.OneToOneField(UserProfile)
     accepted_offers = models.ManyToManyField(Offer, related_name='accepted_offers')
     declined_offers = models.ManyToManyField(Offer, related_name='declined_offers')
-
-
