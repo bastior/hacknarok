@@ -35,7 +35,7 @@ getFacebook = FacebookOauthClient(settings.FACEBOOK_APP_ID, settings.FACEBOOK_AP
 
 
 class OfferView(ListView):
-    model = User
+    model = Offer
     template_name = 'hackathon/offer.html'
 
 
