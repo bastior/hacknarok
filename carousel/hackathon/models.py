@@ -74,3 +74,5 @@ class Recruit(models.Model):
     user_profile = models.OneToOneField(UserProfile)
     accepted_offers = models.ManyToManyField(Offer, related_name='accepted_offers')
     declined_offers = models.ManyToManyField(Offer, related_name='declined_offers')
+
+
