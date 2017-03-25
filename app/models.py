@@ -35,11 +35,13 @@ tags = db.Table('tags',
     db.Column('technology_id', db.Integer, db.ForeignKey('technology.id'))
 )
 
+
 class Technology(db.Model):
     __tablename__ = 'technology'
     __table_args__ = {'mysql_engine': 'InnoDB'}
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
+
 
 class Offer(db.Model):
     __table_args__ = {'mysql_engine': 'InnoDB'}
@@ -62,7 +64,13 @@ class Recruiter(db.Model):
 
 class Recruit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    education_id = db.Column(db.Integer, db.ForeignKey('education.id'))
+    experience = db.Column(db.String(200))
+    certifications = db.Column(db.String(300))
 
 
 class Education(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), primary_key=True)
+    recruits = db.relationship('Recruit', backref='education',
+                             lazy='dynamic')
