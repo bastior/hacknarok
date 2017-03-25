@@ -187,7 +187,11 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/hackathon/offers/')
+                if hasattr(user.userprofile, 'recruiter'):
+                    # TODO: To redirect to recruiter page.
+                    return HttpResponseRedirect('/hackathon/api/')
+                else:
+                    return HttpResponseRedirect('/hackathon/offers/')
             else:
                 return HttpResponse("Your Django Hackathon account is disabled.")
         else:
