@@ -50,17 +50,6 @@ class Technology(models.Model):
     name = models.CharField(max_length=100, default='PHP')
 
 
-class Recruit(models.Model):
-    name = models.CharField(max_length=100, default='')
-    surname = models.CharField(max_length=100, default='')
-    expected_lower_cash = models.CharField(max_length=100, default='')
-    expected_higher_cash = models.CharField(max_length=100, default='')
-    expected_location = models.CharField(max_length=100, default='')
-    expected_secondary_location = models.CharField(max_length=100, default='')
-    technologies = models.ManyToManyField(Technology)
-    user_profile = models.OneToOneField(UserProfile)
-
-
 class Offer(models.Model):
     lower_cash = models.IntegerField()
     higher_cash = models.IntegerField()
@@ -72,3 +61,16 @@ class Offer(models.Model):
     sports_card = models.BooleanField(default=False)
     private_medical_care = models.BooleanField(default=False)
     project_description = models.CharField(max_length=3000, default='')
+
+
+class Recruit(models.Model):
+    name = models.CharField(max_length=100, default='')
+    surname = models.CharField(max_length=100, default='')
+    expected_lower_cash = models.CharField(max_length=100, default='')
+    expected_higher_cash = models.CharField(max_length=100, default='')
+    expected_location = models.CharField(max_length=100, default='')
+    expected_secondary_location = models.CharField(max_length=100, default='')
+    technologies = models.ManyToManyField(Technology)
+    user_profile = models.OneToOneField(UserProfile)
+    accepted_offers = models.ManyToManyField(Offer, related_name='accepted_offers')
+    declined_offers = models.ManyToManyField(Offer, related_name='declined_offers')
