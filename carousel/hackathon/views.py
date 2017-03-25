@@ -69,7 +69,11 @@ class RecruitView(ListView):
     model = Recruit
     template_name = 'hackathon/recruit.html'
 
-
+    def get_queryset(self):
+        qs = super(RecruitView, self).get_queryset()
+        offers = Offer.objects.filter(recruiter=self.request.user.userprofile.recruiter)
+        qs = qs.filter(accepted_offers__in=offers)
+        return qs
 
 
 def index(request):

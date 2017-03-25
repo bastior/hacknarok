@@ -11,9 +11,6 @@ $(document).ready(function() {
             $.ajax({method: "GET", url: "accept", data: {id: $(".offer-item.active").data("id")}});
         }
     });
-});
-
-$(document).ready(function() {
     $("#reject-btn").click(function () {
         if ($(".offer-item.active").data("last") === "True") {
             $.ajax({method: "GET", url: "reject", data: {id: $(".offer-item.active").data("id")}});
@@ -22,5 +19,9 @@ $(document).ready(function() {
         } else {
             $.ajax({method: "GET", url: "reject", data: {id: $(".offer-item.active").data("id")}});
         }
+    });
+    $("#accept-recruit").click(function () {
+        $("#myModal").modal().toggle();
+        $("#myModalLabel").html('Get in touch with ' + $('#recruit-name').html());
     });
 });
