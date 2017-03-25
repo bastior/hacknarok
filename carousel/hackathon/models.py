@@ -66,6 +66,7 @@ class Offer(models.Model):
 class Recruit(models.Model):
     name = models.CharField(max_length=100, default='')
     surname = models.CharField(max_length=100, default='')
+    experience = models.CharField(max_length=1400, default='')
     expected_lower_cash = models.CharField(max_length=100, default='')
     expected_higher_cash = models.CharField(max_length=100, default='')
     expected_location = models.CharField(max_length=100, default='')
@@ -74,3 +75,9 @@ class Recruit(models.Model):
     user_profile = models.OneToOneField(UserProfile)
     accepted_offers = models.ManyToManyField(Offer, related_name='accepted_offers')
     declined_offers = models.ManyToManyField(Offer, related_name='declined_offers')
+
+
+class JobExperience(models.Model):
+    company_name = models.CharField(max_length=100, default='')
+    years = models.IntegerField()
+    recruiter = models.ForeignKey(Recruit, on_delete=models.CASCADE)
