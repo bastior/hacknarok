@@ -49,3 +49,14 @@ class Offer(models.Model):
     higher_cash = models.IntegerField()
     location = models.CharField(max_length=100, default='')
     recruiter = models.ForeignKey(Recruiter, default=0)
+    employment_type = models.CharField(max_length=100, default='')
+    remote_work = models.CharField(max_length=100, default='')
+
+
+class Recruit(models.Model):
+    name = models.CharField(max_length=100, default='')
+    surname = models.CharField(max_length=100, default='')
+    expected_lower_cash = models.CharField(max_length=100, default='')
+    expected_higher_cash = models.CharField(max_length=100, default='')
+    expected_location = models.CharField(max_length=100, default='')
+    expected_secondary_location = models.CharField(max_length=100, default='')
