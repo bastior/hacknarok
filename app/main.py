@@ -16,6 +16,6 @@ with app.app_context():
 
 @app.route("/")
 def hello():
-    return render_template('index.html')
+    return str(db.metadata.sorted_tables[1].columns)
 
 
